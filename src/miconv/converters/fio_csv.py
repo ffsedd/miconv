@@ -8,6 +8,13 @@ from ..registry import register
 @register
 class FioCSV(Converter):
     name = "fio"
+    
+    @classmethod
+    def sniff(cls, path: Path) -> bool:
+        with path.open("r", encoding="utf-8", errors="ignore") as f:
+            head = f.read(300)
+
+        return "Fio banka" in head
 
     def read(self, path: Path) -> pd.DataFrame:
         return pd.read_csv(

@@ -1,24 +1,31 @@
-from __future__ import annotations
+from pathlib import Path
 
-from typing import Dict, Type
-
-from .base import Converter
-
-_REGISTRY: Dict[str, Type[Converter]] = {}
+_REGISTRY = {}
 
 
-def load_converters() -> None:
-    from .converters import fio_csv  # noqa
-
-
-def register(cls: Type[Converter]) -> Type[Converter]:
+def register(cls):
     _REGISTRY[cls.name] = cls
     return cls
 
 
-def get(name: str) -> Type[Converter]:
+def get(name: str):
     return _REGISTRY[name]
 
 
-def available() -> list[str]:
-    return sorted(_REGISTRY)
+def load_converters():
+    import miconv.converters as pkg
+    import pkgutil
+    import importlib
+
+    for m in pkgutil.iter_modules(pkg.__path__):
+        importlib.import_module(f"{pkg.__name__}.{m.name}")
+
+
+def detect(path: Path):
+    load_converters()
+
+    for cls in _REGISTRY.values():
+        if hasattr(cls, "sniff") and cls.sniff(path):
+            return cls()
+
+    raise ValueError(f"Unknown format: {path}")
