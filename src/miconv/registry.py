@@ -28,4 +28,4 @@ def detect(path: Path):
         if hasattr(cls, "sniff") and cls.sniff(path):
             return cls()
 
-    raise ValueError(f"Unknown format: {path}")
+    raise ValueError(f"Format Detect failed: {path}")

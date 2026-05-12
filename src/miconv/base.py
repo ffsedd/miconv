@@ -36,3 +36,18 @@ class Converter(ABC):
             raise ValueError(f"{self.name}: missing required columns {missing}")
 
         return df
+
+    def write(self, df: pd.DataFrame, path: Path) -> None:
+        path = Path(path)
+        if path.suffix == "":
+            path = path.with_suffix(".xlsx")
+
+        df.to_excel(path, index=False)
+        return path
+
+
+    def run(self, src: Path, dst: Path) -> None:
+        df = self.read(src)
+        df = self.transform(df)
+        self.write(df, dst)
+        return df

@@ -18,5 +18,6 @@ def main():
         sys.exit(2)
 
     converter = detect(src)
-    df = converter.convert(src)
-    df.to_excel(dst, index=False)
+    df = converter.run(src, dst)
+    print(df)
+ 
