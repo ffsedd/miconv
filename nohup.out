@@ -1,0 +1,7 @@
+[WARN  glean_core] Shutdown called before Glean is initialized. Waiting.
+[WARN  glean_core] Shutdown called before Glean is initialized. Waiting.
+[Child 93899, MediaDecoderStateMachine #3] WARNING: 7f7802c55700 OpenCubeb() failed to init cubeb: file /builds/worker/checkouts/gecko/dom/media/AudioStream.cpp:279
+[Child 93899, MediaDecoderStateMachine #3] WARNING: Decoder=7f780b351d00 [OnMediaSinkAudioError]: file /builds/worker/checkouts/gecko/dom/media/MediaDecoderStateMachine.cpp:4630
+[WARN  glean_core] Shutdown called before Glean is initialized. Waiting.
+[Child 93899, MediaDecoderStateMachine #10] WARNING: 7f77fe0b8700 OpenCubeb() failed to init cubeb: file /builds/worker/checkouts/gecko/dom/media/AudioStream.cpp:279
+[Child 93899, MediaDecoderStateMachine #10] WARNING: Decoder=7f780173a400 [OnMediaSinkAudioError]: file /builds/worker/checkouts/gecko/dom/media/MediaDecoderStateMachine.cpp:4630
